@@ -1,73 +1,50 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const signInButton = document.getElementById('signInButton');
-    const customAlert = document.getElementById('customAlert');
-    const closeAlertButton = document.getElementById('closeAlert');
+const form = document.getElementById("signupForm");
+const alertBox = document.getElementById("customAlert");
+const closeAlert = document.getElementById("closeAlert");
 
-    const nameInput = document.getElementById('name');
-    const phoneInput = document.getElementById('phone');
-    const emailInput = document.getElementById('email');
+// Validation function
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
 
-    const nameError = document.getElementById('nameError');
-    const phoneError = document.getElementById('phoneError');
-    const emailError = document.getElementById('emailError');
+    let isValid = true;
 
-    function validateName() {
-        if (nameInput.value.trim() === '') {
-            nameError.textContent = 'Name is required';
-            nameError.style.display = 'block';
-            return false;
-        } else {
-            nameError.style.display = 'none';
-            return true;
-        }
+    const name = document.getElementById("name");
+    const phone = document.getElementById("phone");
+    const email = document.getElementById("email");
+
+    // Reset errors
+    document.getElementById("nameError").textContent = "";
+    document.getElementById("phoneError").textContent = "";
+    document.getElementById("emailError").textContent = "";
+
+    // Name validation
+    if (name.value.trim() === "") {
+        document.getElementById("nameError").textContent = "Name is required";
+        isValid = false;
     }
 
-    function validatePhone() {
-        if (phoneInput.value.trim() === '' || !/^\d{10}$/.test(phoneInput.value)) {
-            phoneError.textContent = 'Valid 10-digit phone number is required';
-            phoneError.style.display = 'block';
-            return false;
-        } else {
-            phoneError.style.display = 'none';
-            return true;
-        }
+    // Phone validation
+    if (phone.value.trim() === "") {
+        document.getElementById("phoneError").textContent = "Phone is required";
+        isValid = false;
     }
 
-    function validateEmail() {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(emailInput.value)) {
-            emailError.textContent = 'Valid email is required';
-            emailError.style.display = 'block';
-            return false;
-        } else {
-            emailError.style.display = 'none';
-            return true;
-        }
+    // Email validation
+    if (email.value.trim() === "") {
+        document.getElementById("emailError").textContent = "Email is required";
+        isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email.value)) {
+        document.getElementById("emailError").textContent = "Email is invalid";
+        isValid = false;
     }
 
-    function validateForm() {
-        const isNameValid = validateName();
-        const isPhoneValid = validatePhone();
-        const isEmailValid = validateEmail();
-
-        return isNameValid && isPhoneValid && isEmailValid;
+    if (isValid) {
+        alertBox.style.display = "flex";
+        form.reset();
     }
+});
 
-    function showAlert() {
-        customAlert.classList.add('show');
-    }
-
-    function hideAlert() {
-        customAlert.classList.remove('show');
-    }
-
-    signInButton.addEventListener('click', function() {
-        if (validateForm()) {
-            showAlert();
-        }
-    });
-
-    closeAlertButton.addEventListener('click', function() {
-        hideAlert();
-    });
+// Close alert
+closeAlert.addEventListener("click", () => {
+    alertBox.style.display = "none";
 });
