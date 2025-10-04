@@ -3,38 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premium Sign Up</title>
+  <title>Premium Login</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="background"></div>
+
   <div class="container">
-    <div class="signup-card">
-      <h1>Sign Up</h1>
-      <p>Create your account and start your journey</p>
-      <form id="signupForm" novalidate>
+    <div class="login-card">
+      <h1>Welcome Back</h1>
+      <p>Sign in to continue</p>
+      <form id="loginForm" novalidate>
         <div class="input-group">
-          <input type="text" id="name" name="name" required placeholder=" ">
-          <label for="name">Full Name</label>
-          <span class="error-message" id="nameError"></span>
-        </div>
-        <div class="input-group">
-          <input type="number" id="phone" name="phone" required placeholder=" ">
-          <label for="phone">Phone Number</label>
-          <span class="error-message" id="phoneError"></span>
-        </div>
-        <div class="input-group">
-          <input type="email" id="email" name="email" required placeholder=" ">
+          <input type="email" id="email" placeholder=" " required>
           <label for="email">Email Address</label>
           <span class="error-message" id="emailError"></span>
         </div>
-        <button type="submit" class="btn-signup">Sign Up</button>
+        <div class="input-group">
+          <input type="password" id="password" placeholder=" " required>
+          <label for="password">Password</label>
+          <span class="error-message" id="passwordError"></span>
+        </div>
+        <button type="submit" class="btn-login">Login</button>
       </form>
+      <p class="signup-text">Don't have an account? <a href="#">Sign Up</a></p>
     </div>
   </div>
 
   <div id="customAlert" class="alert-container">
     <div class="alert-box">
-      <p>Form submitted successfully!</p>
+      <p>Login successful!</p>
       <button id="closeAlert">OK</button>
     </div>
   </div>
