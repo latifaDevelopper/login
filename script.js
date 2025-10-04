@@ -1,32 +1,27 @@
-const form = document.getElementById("signupForm");
+const form = document.getElementById("loginForm");
 const alertBox = document.getElementById("customAlert");
 const closeAlert = document.getElementById("closeAlert");
 
-form.addEventListener("submit", function(e){
+form.addEventListener("submit", e => {
     e.preventDefault();
     let isValid = true;
 
-    const name = document.getElementById("name");
-    const phone = document.getElementById("phone");
     const email = document.getElementById("email");
+    const password = document.getElementById("password");
 
-    document.getElementById("nameError").textContent = "";
-    document.getElementById("phoneError").textContent = "";
     document.getElementById("emailError").textContent = "";
+    document.getElementById("passwordError").textContent = "";
 
-    if(name.value.trim() === ""){
-        document.getElementById("nameError").textContent = "Name is required";
-        isValid = false;
-    }
-    if(phone.value.trim() === ""){
-        document.getElementById("phoneError").textContent = "Phone is required";
-        isValid = false;
-    }
     if(email.value.trim() === ""){
         document.getElementById("emailError").textContent = "Email is required";
         isValid = false;
     } else if(!/\S+@\S+\.\S+/.test(email.value)){
         document.getElementById("emailError").textContent = "Email is invalid";
+        isValid = false;
+    }
+
+    if(password.value.trim() === ""){
+        document.getElementById("passwordError").textContent = "Password is required";
         isValid = false;
     }
 
